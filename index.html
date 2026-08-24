@@ -2,7 +2,12 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard Data Login BATS</title>
+    <title>Dashboard Kredensial Akun (Realtime DB)</title>
+    
+    <!-- Firebase App & Realtime Database SDK (Compat Version) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+
     <style>
         *, *::before, *::after {
             box-sizing: border-box;
@@ -26,20 +31,24 @@
             font-size: 20pt;
         }
         
-        /* Style Form Tambah Data */
-        .form-section {
+        .panel-section {
             background: #1e293b;
             border: 2px dashed #38bdf8;
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 25px;
             display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .form-row {
+            display: flex;
             flex-wrap: wrap;
             gap: 10px;
             align-items: center;
             justify-content: center;
         }
-        .form-section input {
+        .form-row input {
             background: #0f172a;
             border: 1px solid #475569;
             color: #ffffff;
@@ -49,7 +58,7 @@
             flex: 1;
             min-width: 150px;
         }
-        .form-section button {
+        .form-row button {
             background-color: #38bdf8;
             color: #0f172a;
             border: none;
@@ -59,8 +68,14 @@
             cursor: pointer;
             transition: 0.2s;
         }
-        .form-section button:hover {
+        .form-row button:hover {
             background-color: #0ea5e9;
+        }
+        .status-sync {
+            text-align: center;
+            font-size: 8.5pt;
+            color: #22c55e;
+            font-weight: bold;
         }
 
         .grid-container {
@@ -167,26 +182,41 @@
 <body>
 
 <div class="container">
-    <h1>DASHBOARD DATA LOGIN BATS</h1>
+    <h1>DASHBOARD KREDENSIAL AKUN (ONLINE)</h1>
     
-    <!-- Form Tambah Data Manual -->
-    <div class="form-section">
-        <input type="text" id="inputNama" placeholder="Nama Web / Platform">
-        <input type="text" id="inputLink" placeholder="Link (URL)">
-        <input type="text" id="inputUser" placeholder="Username / Email">
-        <input type="text" id="inputPass" placeholder="Password">
-        <button onclick="tambahKartuBaru()">+ Tambah Kartu</button>
+    <div class="panel-section">
+        <div class="form-row">
+            <input type="text" id="inputNama" placeholder="Nama Web / Platform">
+            <input type="text" id="inputLink" placeholder="Link (URL)">
+            <input type="text" id="inputUser" placeholder="Username / Email">
+            <input type="text" id="inputPass" placeholder="Password">
+            <button onclick="tambahKartuBaru()">+ Tambah Kartu</button>
+        </div>
+        <div class="status-sync" id="statusSync">Menghubungkan ke Realtime Database...</div>
     </div>
 
-    <!-- Tempat Kartu Ditampilkan -->
-    <div class="grid-container" id="cardContainer">
-        <!-- Kartu bawaan atau yang tersimpan akan muncul di sini -->
-    </div>
+    <div class="grid-container" id="cardContainer"></div>
 </div>
 
 <script>
-    // Data Default Bawaan
-    let defaultCards = [
+    // Konfigurasi Firebase dari project Anda (datalogin-cf028)
+    const firebaseConfig = {
+        apiKey: "AIzaSyDohM2GLzgWG-TP0K0V9ye71qHLdaLJRd0",
+        authDomain: "datalogin-cf028.firebaseapp.com",
+        databaseURL: "https://datalogin-cf028-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "datalogin-cf028",
+        storageBucket: "datalogin-cf028.appspot.com",
+        messagingSenderId: "324724574488",
+        appId: "1:324724574488:web:62f40eeebcdd3feaf4366d"
+    };
+
+    // Inisialisasi Firebase
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    let cardsData = [];
+
+    const defaultCards = [
         {
             nama: "MINERAPAY",
             items: [
@@ -203,61 +233,38 @@
                 { label: "PASS", val: "batol3105", isLink: false },
                 { label: "EMAIL TOKO", val: "goltogel@xpayapi.com", isLink: false }
             ]
-        },
-        {
-            nama: "VIP",
-            items: [
-                { label: "LINK", val: "https://panel.otomatis.vip/goltogel/", isLink: true },
-                { label: "USERNAME", val: "mqriscsgol5", isLink: false },
-                { label: "PASS", val: "batol3105", isLink: false },
-                { label: "PIN", val: "smb88888", isLink: false }
-            ]
-        },
-        {
-            nama: "ZONAMAIN",
-            items: [
-                { label: "LINK", val: "https://smbaz2.zonamain.com/", isLink: true },
-                { label: "USERNAME", val: "bilkisari8678@gmail.com", isLink: false },
-                { label: "PASS", val: "batol3105", isLink: false }
-            ]
-        },
-        {
-            nama: "ADMIN",
-            items: [
-                { label: "LINK", val: "http://agwl2.admitoto.com/?passkey=TydigZK2lk9Spbc", isLink: true },
-                { label: "USERNAME", val: "wohaabilkis", isLink: false },
-                { label: "PASS", val: "Batol3105#", isLink: false },
-                { label: "PIN", val: "3105", isLink: false }
-            ]
-        },
-        {
-            nama: "MONTHLY & TO",
-            items: [
-                { label: "LINK", val: "http://monthly.alisampan.org", isLink: true },
-                { label: "USERNAME", val: "bilkisari8678@gmail.com", isLink: false },
-                { label: "PASS", val: "Batol3105#", isLink: false }
-            ]
-        },
-        {
-            nama: "KESALAHAN LC",
-            items: [
-                { label: "LINK", val: "https://salahmu.fun/", isLink: true },
-                { label: "USERNAME", val: "bilkisari8678@gmail.com", isLink: false },
-                { label: "PASS", val: "batol3105", isLink: false }
-            ]
-        },
-        {
-            nama: "BK",
-            items: [
-                { label: "LINK", val: "https://bk.augipt.com/goltogel/", isLink: true },
-                { label: "USERNAME", val: "bilkisari8678@gmail.com", isLink: false },
-                { label: "PASS", val: "batol3105", isLink: false }
-            ]
         }
     ];
 
-    // Ambil data dari LocalStorage jika ada, jika tidak pakai defaultCards
-    let cardsData = JSON.parse(localStorage.getItem('dashboardKredensial')) || defaultCards;
+    // Ambil data secara real-time dari Realtime Database
+    function ambilDataFirebase() {
+        const dbRef = database.ref('dashboard/kredensial');
+        dbRef.on('value', (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                cardsData = data;
+                document.getElementById('statusSync').innerText = "Terhubung ke Realtime Database (Sinkron)";
+            } else {
+                cardsData = defaultCards;
+                simpanKeFirebase();
+            }
+            renderCards();
+        }, (error) => {
+            document.getElementById('statusSync').innerText = "Gagal terhubung ke database!";
+            console.error(error);
+        });
+    }
+
+    // Simpan data ke Realtime Database
+    function simpanKeFirebase() {
+        database.ref('dashboard/kredensial').set(cardsData)
+            .then(() => {
+                console.log("Data berhasil disinkronkan!");
+            })
+            .catch((error) => {
+                alert("Gagal menyimpan: " + error);
+            });
+    }
 
     function renderCards() {
         const container = document.getElementById('cardContainer');
@@ -315,11 +322,8 @@
             items: newCardItems
         });
 
-        // Simpan ke LocalStorage browser
-        localStorage.setItem('dashboardKredensial', JSON.stringify(cardsData));
-        renderCards();
+        simpanKeFirebase();
 
-        // Reset Form
         document.getElementById('inputNama').value = '';
         document.getElementById('inputLink').value = '';
         document.getElementById('inputUser').value = '';
@@ -329,8 +333,7 @@
     function hapusKartu(index) {
         if (confirm('Yakin ingin menghapus kartu ini?')) {
             cardsData.splice(index, 1);
-            localStorage.setItem('dashboardKredensial', JSON.stringify(cardsData));
-            renderCards();
+            simpanKeFirebase();
         }
     }
 
@@ -363,8 +366,8 @@
         document.body.removeChild(textarea);
     }
 
-    // Jalankan render saat halaman pertama kali dibuka
-    renderCards();
+    // Jalankan sinkronisasi data saat halaman dibuka
+    ambilDataFirebase();
 </script>
 
 </body>
