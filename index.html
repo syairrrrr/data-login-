@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Dashboard Kredensial Akun (Realtime DB)</title>
     
+    <!-- Memuat Font Kaligrafi/Sambung dari Google Fonts (Great Vibes & Pacifico) -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pacifico&display=swap" rel="stylesheet">
+
     <!-- Firebase App & Realtime Database SDK (Compat Version) -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
@@ -13,34 +16,36 @@
             box-sizing: border-box;
         }
         body {
-            /* Menggunakan font gaya digital / monospace */
-            font-family: 'Courier New', Courier, monospace, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* SEMUA teks di halaman menggunakan font kaligrafi sambung (Pacifico / Great Vibes) */
+            font-family: 'Pacifico', cursive, sans-serif;
             margin: 0;
             padding: 20px;
-            /* Background menggunakan animasi GIF dari link yang Anda berikan */
-            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
+            /* Background menggunakan animasi GIF One Piece */
+            background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), 
                         url('https://i.pinimg.com/originals/93/9a/ea/939aead2774923168f37bec947cddb0a.gif') no-repeat center center fixed;
             background-size: cover;
             color: #ffffff;
-            font-size: 10pt;
+            font-size: 11pt;
             min-height: 100vh;
         }
         .container {
             max-width: 1400px;
             margin: 0 auto;
         }
+        
+        /* Judul utama menggunakan gaya kaligrafi artistik */
         h1 {
             text-align: center;
             margin-bottom: 25px;
             color: #ffffff;
-            font-size: 22pt;
-            /* Efek neon/glow digital */
-            text-shadow: 0 0 10px rgba(0, 243, 255, 0.8), 0 0 20px rgba(0, 243, 255, 0.5), 0 2px 8px rgba(0,0,0,0.9);
-            font-weight: 900;
+            font-family: 'Great Vibes', cursive;
+            font-size: 45pt;
+            text-shadow: 0 3px 10px rgba(0,0,0,0.9);
+            font-weight: normal;
             letter-spacing: 2px;
         }
         
-        /* Panel transparan TANPA border/garis kotak */
+        /* Panel transparan TANPA border */
         .panel-section {
             background: rgba(0, 0, 0, 0.35);
             border: none;
@@ -60,43 +65,40 @@
             justify-content: center;
         }
         .form-row input {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(0, 243, 255, 0.5);
-            color: #00ffcc;
-            padding: 8px 10px;
+            background: rgba(255, 255, 255, 0.85);
+            border: none;
+            color: #0f172a;
+            padding: 8px 12px;
             border-radius: 4px;
-            font-size: 9.5pt;
+            font-size: 11pt;
             flex: 1;
             min-width: 150px;
-            font-weight: bold;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Pacifico', cursive; /* Input teks juga kaligrafi */
         }
         .form-row input::placeholder {
-            color: #a5b4fc;
+            color: #475569;
+            font-family: 'Pacifico', cursive;
         }
         .form-row button {
-            background-color: rgba(2, 132, 199, 0.8);
+            background-color: #0284c7;
             color: #ffffff;
-            border: 1px solid #00f3ff;
+            border: none;
             padding: 8px 15px;
             border-radius: 4px;
-            font-weight: bold;
             cursor: pointer;
             transition: 0.2s;
-            box-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
-            font-family: 'Courier New', Courier, monospace;
-            letter-spacing: 1px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            font-family: 'Pacifico', cursive;
+            font-size: 11pt;
         }
         .form-row button:hover {
-            background-color: rgba(3, 105, 161, 0.9);
-            box-shadow: 0 0 15px rgba(0, 243, 255, 0.8);
+            background-color: #0369a1;
         }
         .status-sync {
             text-align: center;
-            font-size: 8.5pt;
-            color: #00ffcc;
-            font-weight: bold;
-            text-shadow: 0 0 8px rgba(0, 255, 204, 0.8);
+            font-size: 10pt;
+            color: #4ade80;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.9);
         }
 
         .grid-container {
@@ -106,7 +108,6 @@
             margin-bottom: 20px;
         }
         
-        /* Kartu transparan TANPA border */
         .card {
             background: rgba(0, 0, 0, 0.3);
             border: none;
@@ -116,30 +117,27 @@
             position: relative;
         }
         
-        /* Header kartu transparan dengan gaya digital */
         .card-header {
-            background-color: rgba(6, 182, 212, 0.4);
+            background-color: rgba(6, 182, 212, 0.55);
             color: #ffffff;
             text-align: center;
-            font-weight: bold;
-            padding: 10px;
-            font-size: 11pt;
-            letter-spacing: 2px;
+            padding: 8px 10px;
+            font-size: 16pt;
+            letter-spacing: 1px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            text-shadow: 0 0 8px rgba(0, 243, 255, 0.8);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
         .btn-delete {
-            background: rgba(239, 68, 68, 0.7);
+            background: rgba(239, 68, 68, 0.85);
             color: white;
-            border: 1px solid #ef4444;
+            border: none;
             border-radius: 4px;
-            padding: 2px 6px;
-            font-size: 7.5pt;
+            padding: 3px 8px;
+            font-size: 9pt;
             cursor: pointer;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: bold;
+            font-family: 'Pacifico', cursive;
         }
         .card-body {
             display: flex;
@@ -147,31 +145,27 @@
         }
         .row-item {
             display: flex;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
         }
         .row-item:last-child {
             border-bottom: none;
         }
         
-        /* Label baris transparan */
         .label {
-            background-color: rgba(126, 34, 206, 0.4);
-            color: #f3e8ff;
+            background-color: rgba(126, 34, 206, 0.55);
+            color: #ffffff;
             width: 35%;
             padding: 8px 10px;
-            font-weight: bold;
-            font-size: 8.5pt;
+            font-size: 10pt;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            text-shadow: 0 0 6px rgba(216, 180, 254, 0.8);
-            letter-spacing: 1px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
         
-        /* Kotak Value / Nilai transparan dengan teks digital terang */
         .value-container {
-            background-color: rgba(37, 99, 235, 0.4);
+            background-color: rgba(37, 99, 235, 0.55);
             color: #ffffff;
             width: 65%;
             padding: 6px 8px;
@@ -179,47 +173,44 @@
             align-items: center;
             justify-content: space-between;
             gap: 5px;
-            text-shadow: 0 0 6px rgba(147, 197, 253, 0.8);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
         .value-text {
-            font-size: 8.5pt;
+            font-size: 10pt;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            font-weight: bold;
         }
         .value-text a {
-            color: #60a5fa;
+            color: #ffffff;
             text-decoration: underline;
         }
         .btn-copy {
-            background-color: rgba(255, 255, 255, 0.85);
-            color: #0f172a;
-            border: 1px solid #ffffff;
-            padding: 3px 6px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #1e293b;
+            border: none;
+            padding: 3px 8px;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 7.5pt;
-            font-weight: bold;
+            font-size: 9pt;
             flex-shrink: 0;
             transition: all 0.2s;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Pacifico', cursive;
         }
         .btn-copy:hover {
             background-color: #ffffff;
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+            color: #0f172a;
         }
         .btn-copy.copied {
             background-color: #16a34a;
             color: #ffffff;
-            border-color: #16a34a;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>DASHBOARD LOGIN BATS</h1>
+    <h1>Dashboard Login Bats</h1>
     
     <div class="panel-section">
         <div class="form-row">
@@ -236,7 +227,6 @@
 </div>
 
 <script>
-    // Konfigurasi Firebase dari project Anda (datalogin-cf028)
     const firebaseConfig = {
         apiKey: "AIzaSyDohM2GLzgWG-TP0K0V9ye71qHLdaLJRd0",
         authDomain: "datalogin-cf028.firebaseapp.com",
@@ -247,7 +237,6 @@
         appId: "1:324724574488:web:62f40eeebcdd3feaf4366d"
     };
 
-    // Inisialisasi Firebase
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
 
@@ -255,7 +244,7 @@
 
     const defaultCards = [
         {
-            nama: "MINERAPAY",
+            nama: "Minerapay",
             items: [
                 { label: "LINK", val: "https://backoffice.minerapay.com/", isLink: true },
                 { label: "USERNAME", val: "bilkisari8678@gmail.com", isLink: false },
@@ -263,7 +252,7 @@
             ]
         },
         {
-            nama: "XPAY",
+            nama: "Xpay",
             items: [
                 { label: "LINK", val: "https://m2qris.com/", isLink: true },
                 { label: "USERNAME", val: "CS1_GOLTOGEL", isLink: false },
@@ -273,7 +262,6 @@
         }
     ];
 
-    // Ambil data secara real-time dari Realtime Database
     function ambilDataFirebase() {
         const dbRef = database.ref('dashboard/kredensial');
         dbRef.on('value', (snapshot) => {
@@ -292,7 +280,6 @@
         });
     }
 
-    // Simpan data ke Realtime Database
     function simpanKeFirebase() {
         database.ref('dashboard/kredensial').set(cardsData)
             .then(() => {
@@ -403,7 +390,6 @@
         document.body.removeChild(textarea);
     }
 
-    // Jalankan sinkronisasi data saat halaman dibuka
     ambilDataFirebase();
 </script>
 
