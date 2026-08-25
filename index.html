@@ -16,8 +16,8 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
-            /* Overlay tipis agar gambar background terlihat jelas */
-            background: linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25)), 
+            /* Background gambar terang tanpa blur dan tanpa overlay tebal */
+            background: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), 
                         url('https://images4.alphacoders.com/606/thumb-1920-606301.jpg') no-repeat center center fixed;
             background-size: cover;
             color: #1e293b;
@@ -33,21 +33,21 @@
             margin-bottom: 25px;
             color: #ffffff;
             font-size: 22pt;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
             font-weight: 800;
         }
         
+        /* Panel transparan TANPA border/garis kotak */
         .panel-section {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-            border: 2px dashed #0284c7;
+            background: rgba(255, 255, 255, 0.45);
+            border: none;
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 25px;
             display: flex;
             flex-direction: column;
             gap: 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
         }
         .form-row {
             display: flex;
@@ -57,17 +57,18 @@
             justify-content: center;
         }
         .form-row input {
-            background: #ffffff;
-            border: 1px solid #cbd5e1;
-            color: #1e293b;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(203, 213, 225, 0.9);
+            color: #0f172a;
             padding: 8px 10px;
             border-radius: 4px;
             font-size: 9pt;
             flex: 1;
             min-width: 150px;
+            font-weight: 600;
         }
         .form-row input::placeholder {
-            color: #94a3b8;
+            color: #475569;
         }
         .form-row button {
             background-color: #0284c7;
@@ -78,6 +79,7 @@
             font-weight: bold;
             cursor: pointer;
             transition: 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
         .form-row button:hover {
             background-color: #0369a1;
@@ -85,8 +87,9 @@
         .status-sync {
             text-align: center;
             font-size: 8.5pt;
-            color: #16a34a;
+            color: #14532d;
             font-weight: bold;
+            text-shadow: 0 1px 3px rgba(255,255,255,0.9);
         }
 
         .grid-container {
@@ -95,17 +98,20 @@
             gap: 15px;
             margin-bottom: 20px;
         }
+        
+        /* Kartu transparan TANPA border */
         .card {
-            background: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(8px);
-            border: 2px solid #06b6d4;
+            background: rgba(255, 255, 255, 0.25);
+            border: none;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
             position: relative;
         }
+        
+        /* Header kartu dibuat transparan */
         .card-header {
-            background-color: #06b6d4;
+            background-color: rgba(6, 182, 212, 0.55);
             color: #ffffff;
             text-align: center;
             font-weight: bold;
@@ -115,9 +121,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
         .btn-delete {
-            background: #ef4444;
+            background: rgba(239, 68, 68, 0.85);
             color: white;
             border: none;
             border-radius: 4px;
@@ -131,13 +138,15 @@
         }
         .row-item {
             display: flex;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
         .row-item:last-child {
             border-bottom: none;
         }
+        
+        /* Label baris dibuat transparan */
         .label {
-            background-color: #7e22ce;
+            background-color: rgba(126, 34, 206, 0.55);
             color: #ffffff;
             width: 35%;
             padding: 8px 10px;
@@ -147,9 +156,12 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
+        
+        /* Kotak Value / Nilai dibuat transparan */
         .value-container {
-            background-color: #2563eb;
+            background-color: rgba(37, 99, 235, 0.55);
             color: #ffffff;
             width: 65%;
             padding: 6px 8px;
@@ -157,19 +169,21 @@
             align-items: center;
             justify-content: space-between;
             gap: 5px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
         .value-text {
             font-size: 8.5pt;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            font-weight: 500;
         }
         .value-text a {
             color: #ffffff;
             text-decoration: underline;
         }
         .btn-copy {
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.8);
             color: #1e293b;
             border: 1px solid #cbd5e1;
             padding: 3px 6px;
@@ -181,7 +195,7 @@
             transition: all 0.2s;
         }
         .btn-copy:hover {
-            background-color: #f1f5f9;
+            background-color: #ffffff;
             color: #0f172a;
         }
         .btn-copy.copied {
