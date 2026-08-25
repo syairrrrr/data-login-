@@ -13,14 +13,15 @@
             box-sizing: border-box;
         }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Menggunakan font gaya digital / monospace */
+            font-family: 'Courier New', Courier, monospace, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
             /* Background menggunakan animasi GIF dari link yang Anda berikan */
-            background: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), 
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
                         url('https://i.pinimg.com/originals/93/9a/ea/939aead2774923168f37bec947cddb0a.gif') no-repeat center center fixed;
             background-size: cover;
-            color: #1e293b;
+            color: #ffffff;
             font-size: 10pt;
             min-height: 100vh;
         }
@@ -33,13 +34,15 @@
             margin-bottom: 25px;
             color: #ffffff;
             font-size: 22pt;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
-            font-weight: 800;
+            /* Efek neon/glow digital */
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.8), 0 0 20px rgba(0, 243, 255, 0.5), 0 2px 8px rgba(0,0,0,0.9);
+            font-weight: 900;
+            letter-spacing: 2px;
         }
         
         /* Panel transparan TANPA border/garis kotak */
         .panel-section {
-            background: rgba(255, 255, 255, 0.45);
+            background: rgba(0, 0, 0, 0.35);
             border: none;
             padding: 15px;
             border-radius: 8px;
@@ -47,7 +50,7 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
         .form-row {
             display: flex;
@@ -57,39 +60,43 @@
             justify-content: center;
         }
         .form-row input {
-            background: rgba(255, 255, 255, 0.85);
-            border: 1px solid rgba(203, 213, 225, 0.9);
-            color: #0f172a;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 243, 255, 0.5);
+            color: #00ffcc;
             padding: 8px 10px;
             border-radius: 4px;
-            font-size: 9pt;
+            font-size: 9.5pt;
             flex: 1;
             min-width: 150px;
-            font-weight: 600;
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
         }
         .form-row input::placeholder {
-            color: #475569;
+            color: #a5b4fc;
         }
         .form-row button {
-            background-color: #0284c7;
+            background-color: rgba(2, 132, 199, 0.8);
             color: #ffffff;
-            border: none;
+            border: 1px solid #00f3ff;
             padding: 8px 15px;
             border-radius: 4px;
             font-weight: bold;
             cursor: pointer;
             transition: 0.2s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
+            font-family: 'Courier New', Courier, monospace;
+            letter-spacing: 1px;
         }
         .form-row button:hover {
-            background-color: #0369a1;
+            background-color: rgba(3, 105, 161, 0.9);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.8);
         }
         .status-sync {
             text-align: center;
             font-size: 8.5pt;
-            color: #14532d;
+            color: #00ffcc;
             font-weight: bold;
-            text-shadow: 0 1px 3px rgba(255,255,255,0.9);
+            text-shadow: 0 0 8px rgba(0, 255, 204, 0.8);
         }
 
         .grid-container {
@@ -101,36 +108,38 @@
         
         /* Kartu transparan TANPA border */
         .card {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(0, 0, 0, 0.3);
             border: none;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
             position: relative;
         }
         
-        /* Header kartu transparan */
+        /* Header kartu transparan dengan gaya digital */
         .card-header {
-            background-color: rgba(6, 182, 212, 0.55);
+            background-color: rgba(6, 182, 212, 0.4);
             color: #ffffff;
             text-align: center;
             font-weight: bold;
             padding: 10px;
-            font-size: 12pt;
-            letter-spacing: 1px;
+            font-size: 11pt;
+            letter-spacing: 2px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+            text-shadow: 0 0 8px rgba(0, 243, 255, 0.8);
         }
         .btn-delete {
-            background: rgba(239, 68, 68, 0.85);
+            background: rgba(239, 68, 68, 0.7);
             color: white;
-            border: none;
+            border: 1px solid #ef4444;
             border-radius: 4px;
             padding: 2px 6px;
             font-size: 7.5pt;
             cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
         }
         .card-body {
             display: flex;
@@ -138,7 +147,7 @@
         }
         .row-item {
             display: flex;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         .row-item:last-child {
             border-bottom: none;
@@ -146,8 +155,8 @@
         
         /* Label baris transparan */
         .label {
-            background-color: rgba(126, 34, 206, 0.55);
-            color: #ffffff;
+            background-color: rgba(126, 34, 206, 0.4);
+            color: #f3e8ff;
             width: 35%;
             padding: 8px 10px;
             font-weight: bold;
@@ -156,12 +165,13 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+            text-shadow: 0 0 6px rgba(216, 180, 254, 0.8);
+            letter-spacing: 1px;
         }
         
-        /* Kotak Value / Nilai transparan */
+        /* Kotak Value / Nilai transparan dengan teks digital terang */
         .value-container {
-            background-color: rgba(37, 99, 235, 0.55);
+            background-color: rgba(37, 99, 235, 0.4);
             color: #ffffff;
             width: 65%;
             padding: 6px 8px;
@@ -169,23 +179,23 @@
             align-items: center;
             justify-content: space-between;
             gap: 5px;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+            text-shadow: 0 0 6px rgba(147, 197, 253, 0.8);
         }
         .value-text {
             font-size: 8.5pt;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            font-weight: 500;
+            font-weight: bold;
         }
         .value-text a {
-            color: #ffffff;
+            color: #60a5fa;
             text-decoration: underline;
         }
         .btn-copy {
-            background-color: rgba(255, 255, 255, 0.8);
-            color: #1e293b;
-            border: 1px solid #cbd5e1;
+            background-color: rgba(255, 255, 255, 0.85);
+            color: #0f172a;
+            border: 1px solid #ffffff;
             padding: 3px 6px;
             border-radius: 4px;
             cursor: pointer;
@@ -193,10 +203,11 @@
             font-weight: bold;
             flex-shrink: 0;
             transition: all 0.2s;
+            font-family: 'Courier New', Courier, monospace;
         }
         .btn-copy:hover {
             background-color: #ffffff;
-            color: #0f172a;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
         }
         .btn-copy.copied {
             background-color: #16a34a;
